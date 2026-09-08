@@ -1,0 +1,18 @@
+{
+  "database": "/home/atori/workspace/storage/data/storage.sqlite",
+  "rows": {
+    "products": 30,
+    "locations": 30,
+    "stores": 5,
+    "batches": 224,
+    "receipts": 194,
+    "order_lines": 4264,
+    "movements": 4489,
+    "stock_counts": 196,
+    "inspections": 65
+  },
+  "integrity_check": "ok",
+  "foreign_key_errors": 0,
+  "SKU001_outbound": 777,
+  "ending_inventory_check": "30 SKUs matched"
+}

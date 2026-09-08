@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "batch_balances_matched": 224,
+  "daily_balances_matched": 2700,
+  "average_inventory_matched": 30,
+  "cached_formula_errors": [],
+  "inventory_amount_cny": 150956.25,
+  "method": "Read-only cached workbook values reconciled against source CSVs; workbook not recalculated or modified."
+}

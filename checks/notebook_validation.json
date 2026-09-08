@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "store_count": 5,
+  "order_line_count": 4264,
+  "on_time_in_full_count": 4143,
+  "shortage_line_count": 121,
+  "shortage_amount_cny": 35248.53,
+  "csv_roundtrip": "PASS",
+  "database_access": "read-only"
+}

@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><style>*{box-sizing:border-box}body{margin:0;background:#f3f6f8;color:#203442;font:16px "Microsoft YaHei",sans-serif}.page{width:1380px;padding:44px 52px;margin:auto;background:white}h1{font-size:32px;margin:8px 0 12px}h2{font-size:21px;margin:28px 0 14px}.eyebrow{color:#217a80;font-size:14px;letter-spacing:2px}.sub{color:#627580;margin-bottom:24px;line-height:1.7}table{border-collapse:collapse;width:100%;font-size:14px}th{background:#edf3f5;color:#324e5e;text-align:left}th,td{padding:12px 13px;border-bottom:1px solid #e1e8ec;white-space:nowrap}td.num{text-align:right;font-variant-numeric:tabular-nums}tr:nth-child(even){background:#f8fafb}.note{font-size:13px;color:#637580;margin-top:20px;line-height:1.7}pre{background:#203442;color:#e7f1f5;font:14px/1.6 Consolas,monospace;padding:22px;border-radius:6px;white-space:pre-wrap}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card{background:#edf5f5;padding:20px;border-left:4px solid #217a80}.card strong{font-size:30px;display:block}.grid table{font-size:13px}</style><main class="page"><div class="eyebrow">茶饮仓库库存与门店履约分析</div><h1>03 / SQL：订单明细聚合与门店履约</h1><div class="sub">SQLite 只读查询 · 2026-06-09 至 2026-09-06 · 先聚合出库，再关联订单，避免重复计量</div><table><thead><tr><th>门店</th><th>明细数</th><th>按时足量</th><th>按时足量率</th><th>未足量</th><th>未发金额（元）</th></tr></thead><tbody><tr><td>模拟门店1</td><td class="num">860</td><td class="num">838</td><td>97.44%</td><td class="num">22</td><td class="num">12,918.87</td></tr><tr><td>模拟门店4</td><td class="num">833</td><td class="num">807</td><td>96.88%</td><td class="num">26</td><td class="num">7,212.15</td></tr><tr><td>模拟门店2</td><td class="num">847</td><td class="num">825</td><td>97.40%</td><td class="num">22</td><td class="num">5,230.72</td></tr><tr><td>模拟门店3</td><td class="num">874</td><td class="num">851</td><td>97.37%</td><td class="num">23</td><td class="num">5,143.90</td></tr><tr><td>模拟门店5</td><td class="num">850</td><td class="num">822</td><td>96.71%</td><td class="num">28</td><td class="num">4,742.89</td></tr></tbody></table><h2>门店汇总查询</h2><pre>-- 根据聚合的分析表对各个门店的数据特征进行分析
+SELECT
+    store_id,
+    store_name,
+    COUNT(*) AS order_line_count,
+    SUM(on_time_in_full) AS on_time_in_full_count,
+
+    ROUND(
+        100.0 * SUM(on_time_in_full) / COUNT(*), 2
+    ) AS on_time_in_full_pct,
+
+    SUM(
+        CASE WHEN unshipped_qty &gt; 0 THEN 1 ELSE 0 END
+    ) AS shortage_line_count,
+
+    ROUND(
+        SUM(shortage_amount_cny), 2
+    ) AS shortage_amount_cny
+
+FROM analysis_detail
+GROUP BY store_id, store_name
+ORDER BY shortage_amount_cny DESC;
+</pre><div class="note">结果来自同一 SQL 查询的已导出 DataFrame；未发金额为模拟成本。完整 CTE 见 sql/02_order_fulfillment.sql。</div></main>

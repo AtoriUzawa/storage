@@ -1,0 +1,41 @@
+{
+  "source": "完全合成，非卡旺卡真实数据；非真实食品储存标准",
+  "generator": "scripts/generate_data.py",
+  "status": "PASS",
+  "seed": 20260907,
+  "start": "2026-06-09",
+  "end": "2026-09-06",
+  "days": 90,
+  "rows": {
+    "products": 30,
+    "locations": 30,
+    "stores": 5,
+    "batches": 224,
+    "movements": 4489,
+    "receipts": 194,
+    "order_lines": 4264,
+    "stock_counts": 196,
+    "inspections": 65
+  },
+  "short_order_lines": 121,
+  "open_count_differences": 28,
+  "checks": [
+    "主键唯一",
+    "批次商品和货位一致",
+    "逐笔库存非负",
+    "发货不超订单",
+    "过期和冻结批次未出库",
+    "盘点快照与流水一致"
+  ],
+  "sha256": {
+    "data/raw/batches.csv": "322ae7ee34b9995581cb61ed81ef041c7e29962b2c4c7c3ecd3d9f4c71434c47",
+    "data/raw/inspections.csv": "6f28d126e380fc7cf520b65f4edaaaf22522ea0342c889e10ae88cf13ff5bacb",
+    "data/raw/locations.csv": "659f7947ad27f57371f014de512e328d3391ad4081d404cc19c705cf7a8137f2",
+    "data/raw/movements.csv": "960cf08fda3dacab028796b82d1a59487ccf0cf8868ba0b8578dec5784afa11c",
+    "data/raw/order_lines.csv": "5d11855d51ffcb0a9d746d589686a0f56a0662d22e6d7c93d3b6c32bd60971de",
+    "data/raw/products.csv": "5ace54e00188efad72c7f9ccfc804b16e8d58d37dfc535e82dfb03651e3dc7bd",
+    "data/raw/receipts.csv": "6788be22c5de5c33402503e47452e6badd7f139203adb88e6403c92382a0f44a",
+    "data/raw/stock_counts.csv": "f0dc8fec418d4bf81a5a774b803599f1b264cbfb0810636af10e3602ae597c0e",
+    "data/raw/stores.csv": "79204e28899b1ea5a1423a696ae7a4dcbce9e8cdf31ac56aae23998c7eddf155"
+  }
+}

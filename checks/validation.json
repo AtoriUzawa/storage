@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "seed": 20260907,
+  "start": "2026-06-09",
+  "end": "2026-09-06",
+  "days": 90,
+  "rows": {
+    "products": 30,
+    "locations": 30,
+    "stores": 5,
+    "batches": 224,
+    "movements": 4489,
+    "receipts": 194,
+    "order_lines": 4264,
+    "stock_counts": 196,
+    "inspections": 65
+  },
+  "short_order_lines": 121,
+  "open_count_differences": 28,
+  "checks": [
+    "主键唯一",
+    "批次商品和货位一致",
+    "逐笔库存非负",
+    "发货不超订单",
+    "过期和冻结批次未出库",
+    "盘点快照与流水一致"
+  ]
+}
